@@ -12,7 +12,7 @@ import argparse
 import sys
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from dateutil.tz import *
 from ts_formats import TIMESTAMP_FORMATS
 
@@ -75,7 +75,7 @@ def main(args):
             now = datetime.now().replace(tzinfo=tzlocal())
         else:
             # TODO other time zones
-            now = datetime.utcnow().replace(tzinfo=tzutc())
+            now = datetime.now(timezone.utc).replace(tzinfo=tzutc())
         ts_now(now, args.query)
 
 
